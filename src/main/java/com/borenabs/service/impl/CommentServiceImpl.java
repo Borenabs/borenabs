@@ -1,0 +1,60 @@
+package com.borenabs.service.impl;
+
+import com.borenabs.dto.AdminCommentList;
+import com.borenabs.entity.Comment;
+import com.borenabs.mapper.AdminCommentListMapper;
+import com.borenabs.mapper.ArticleMapper;
+import com.borenabs.mapper.CommentMapper;
+import com.borenabs.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+@Service
+public class CommentServiceImpl implements CommentService {
+    @Autowired
+    CommentMapper commentMapper;
+    @Autowired
+    ArticleMapper articleMapper;
+    @Autowired
+    AdminCommentListMapper adminCommentListMapper;
+    @Override
+    public int deleteByPrimaryKey(Integer commentId) {
+        return 0;
+    }
+
+    @Override
+    public int insert(Comment record) {
+        return 0;
+    }
+
+    @Override
+    public int insertSelective(Comment record) {
+        return 0;
+    }
+
+    @Override
+    public Comment selectByPrimaryKey(Integer commentId) {
+        return null;
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Comment record) {
+        return 0;
+    }
+
+    @Override
+    public int updateByPrimaryKey(Comment record) {
+        return 0;
+    }
+
+    /**
+     * 获取评论列表 分页
+     *
+     * @return*/
+    @Override
+    public List<AdminCommentList> listCommentByPage() {
+        return adminCommentListMapper.adminCommentList();
+    }
+
+}

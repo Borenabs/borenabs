@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.borenabs.mapper.AdminCommentListMapper">
+    <resultMap id="BaseResultMap" type="com.borenabs.dto.AdminCommentList">
+        <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+        <result column="comment_pid" property="commentPid" jdbcType="INTEGER" />
+        <result column="comment_pname" property="commentPname" jdbcType="VARCHAR" />
+        <result column="comment_article_id" property="commentArticleId" jdbcType="INTEGER" />
+        <result column="comment_author_name" property="commentAuthorName" jdbcType="VARCHAR" />
+        <result column="comment_author_avatar" property="commentAuthorAvatar" jdbcType="VARCHAR" />
+        <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+        <result column="comment_create_time" property="commentCreateTime" jdbcType="TIMESTAMP" />
+        <result column="article_id" property="articleId" jdbcType="INTEGER" />
+        <result column="article_title" property="articleTitle" jdbcType="VARCHAR" />
+        <result column="article_user_id" property="articleUserId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        comment_id, comment_pid,comment_pname,comment_article_id,comment_author_name,
+        comment_author_avatar,comment_content,comment_create_time,article_id,article_title,article_user_id
+    </sql>
+    <select id="adminCommentList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        FROM
+        article
+        INNER JOIN comment ON comment_article_id = article_id
+    </select>
+</mapper>

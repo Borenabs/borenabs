@@ -1,0 +1,88 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Lan
+  Date: 2019/9/6
+  Time: 22:21
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
+<rapid:override name="content">
+	<blockquote class="layui-elem-quote">
+        <span class="layui-breadcrumb" lay-separator="/">
+              <a href="/admin">首页</a>
+              <a><cite>评论列表</cite></a>
+        </span>
+	</blockquote>
+	<div class="layui-tab layui-tab-card">
+		<table class="layui-table" lay-even lay-skin="nob">
+			<colgroup>
+				<col width="100">
+				<col width="300">
+				<col width=200">
+				<col width="150">
+				<col width="50">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>作者</th>
+				<th>评论内容</th>
+				<th>回复至</th>
+				<th>提交于</th>
+				<th>ID</th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${pageInfo}" var="c">
+				<tr>
+					<%--用户头像,用户名--%>
+					<td>
+						<img src="${c.commentAuthorAvatar}" alt="" width="64px">
+						<strong>${c.commentAuthorName}</strong>
+					</td>
+					<td class="dashboard-comment-wrap">
+							${c.commentContent}
+						<div class="row-actions">
+                                     <span class="">
+                                        <a href="/admin/comment/reply/${c.commentId}">
+                                            回复
+                                        </a>
+                                     </span>
+							<span class="">
+                                        <a href="/admin/comment/edit/${c.commentId}">编辑</a>
+                                     </span>
+							<span class=""> |
+                                        <a href="javascript:void(0)" onclick="deleteComment(${c.commentId})">删除</a>
+                                     </span>
+						</div>
+					</td>
+					<td>
+						<a href="/article/${c.articleId}" target="_blank">${c.articleTitle}</a>
+					</td>
+					<td>
+						<fmt:formatDate value="${c.commentCreateTime}" pattern="yyyy年MM月dd日 HH:dd:ss"/>
+					</td>
+					<td>${c.commentId}</td>
+					<td>
+						<span></span>
+					</td>
+					<td>
+						<span></span>
+					</td>
+
+
+				</tr>
+			</c:forEach>
+			</tbody>
+
+		</table>
+
+		<div id="nav" style="">
+				<%--<%@ include file="../Public/paging.jsp" %>--%>
+		</div>
+	</div>
+</rapid:override>
+<jsp:include page="../public/framework.jsp" />
