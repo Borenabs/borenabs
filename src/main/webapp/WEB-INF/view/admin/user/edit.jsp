@@ -87,13 +87,6 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">单选框</label>
-			<div class="layui-input-block">
-				<input type="radio" name="sex" value="男" title="男">
-				<input type="radio" name="sex" value="女" title="女" checked>
-			</div>
-		</div>
-		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="demo1" id="submit-btn">保存</button>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>

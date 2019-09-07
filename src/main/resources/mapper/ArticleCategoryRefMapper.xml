@@ -28,4 +28,9 @@
       </if>
     </trim>
   </insert>
+  <select id="countArticleByCategoryId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from
+    article_category_ref
+    where category_id = #{value}
+  </select>
 </mapper>

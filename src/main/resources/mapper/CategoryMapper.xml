@@ -103,4 +103,9 @@
       category_icon = #{categoryIcon,jdbcType=VARCHAR}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
+  <select id="categoryList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from category order by category_order desc,category_id asc
+  </select>
 </mapper>

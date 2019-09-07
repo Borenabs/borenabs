@@ -14,7 +14,9 @@
 <html lang="zh-CN">
 <head>
 	<title>博客后台</title>
-	<link rel="stylesheet" href="../../../../css/layui.css">
+	<link rel="stylesheet" href="/layui/css/layui.css">
+	<rapid:block name="header-style"></rapid:block>
+	<rapid:block name="header-script"></rapid:block>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -57,7 +59,7 @@
 					<dl class="layui-nav-child">
 						<dd><a href="/article/index">全部文章</a></dd>
 						<dd><a href="javascript:;">写文章</a></dd>
-						<dd><a href="javascript:;">全部分类</a></dd>
+						<dd><a href="/admin/category">全部分类</a></dd>
 						<dd><a href="javascript:;">全部标签</a></dd>
 					</dl>
 				</li>
@@ -89,14 +91,12 @@
 			</rapid:block>
 		</div>
 	</div>
-<script src="../../../../js/layui.all.js"></script>
+<script src="/layui/layui.all.js"></script>
 <script>
     //一般直接写在一个js文件中
     layui.use(['layer', 'form'], function(){
         var layer = layui.layer
             ,form = layui.form;
-
-        layer.msg('Hello World');
     });
 </script>
 	<rapid:block name="footer-script">
