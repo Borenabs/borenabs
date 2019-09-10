@@ -5,11 +5,20 @@
   Time: 22:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
+<rapid:override name="header-style">
+	<style>
+		/*覆盖 layui*/
+		.layui-table {
+			margin-top: 0;
+		}
+	</style>
+</rapid:override>
 <rapid:override name="content">
 	<blockquote class="layui-elem-quote">
         <span class="layui-breadcrumb" lay-separator="/">
@@ -36,7 +45,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${pageInfo}" var="c">
+			<c:forEach items="${pageInfo.list}" var="c">
 				<tr>
 					<%--用户头像,用户名--%>
 					<td>
@@ -79,10 +88,44 @@
 			</tbody>
 
 		</table>
-
 		<div id="nav" style="">
-				<%--<%@ include file="../Public/paging.jsp" %>--%>
+			<%@ include file="../public/paging.jsp" %>
 		</div>
+		<%--<div id="demo3"></div>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+			<legend>自定义首页、尾页、上一页、下一页文本</legend>
+		</fieldset>--%>
 	</div>
+	<%--<script>
+	layui.use(['laypage', 'layer'], function(){
+	var laypage = layui.laypage
+	,layer = layui.layer;
+        //自定义首页、尾页、上一页、下一页文本
+        laypage.render({
+            elem: 'demo3'
+            ,count: 100
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em>←</em>'
+            ,next: '<em>→</em>'
+        });
+        //调用分页
+        laypage.render({
+            elem: 'demo20'
+            ,count: data.length
+            ,jump: function(obj){
+                //模拟渲染
+                document.getElementById('biuuu_city_list').innerHTML = function(){
+                    var arr = []
+                        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                    layui.each(thisData, function(index, item){
+                        arr.push('<li>'+ item +'</li>');
+                    });
+                    return arr.join('');
+                }();
+            }
+        });
+    });
+	</script>--%>
 </rapid:override>
 <jsp:include page="../public/framework.jsp" />

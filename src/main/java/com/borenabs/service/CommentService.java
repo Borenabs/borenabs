@@ -2,6 +2,7 @@ package com.borenabs.service;
 
 import com.borenabs.dto.AdminCommentList;
 import com.borenabs.entity.Comment;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public interface CommentService {
 
     int updateByPrimaryKey(Comment record);
     /**
-    * 获取评论列表 分页
-    *
-     * @return*/
-    public List<AdminCommentList> listCommentByPage();
+     * 评论列表,分页显示;
+     *
+     * */
+    PageInfo<AdminCommentList> listCommentByPage(Integer pageIndex, Integer pageSize);
 }

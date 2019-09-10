@@ -31,7 +31,7 @@
     </properties>
 
     <dependencies>
-        <!--pagehelper-->
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>

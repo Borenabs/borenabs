@@ -15,6 +15,7 @@
 <head>
 	<title>博客后台</title>
 	<link rel="stylesheet" href="/layui/css/layui.css">
+	<link rel="stylesheet" href="/css/back.css">
 	<rapid:block name="header-style"></rapid:block>
 	<rapid:block name="header-script"></rapid:block>
 </head>
@@ -92,6 +93,8 @@
 		</div>
 	</div>
 <script src="/layui/layui.all.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/back.js"></script>
 <script>
     //一般直接写在一个js文件中
     layui.use(['layer', 'form'], function(){

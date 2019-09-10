@@ -34,6 +34,28 @@ public class CategoryController {
         return "redirect:/admin/category";
     }
     /**
+     * 后台编辑分类(回显)
+     * */
+    @RequestMapping("/edit/{id}")
+    public String categoryEdit(@PathVariable("id") Integer categoryId,Model model){
+        Category category = categoryService.selectByPrimaryKey(categoryId);
+        model.addAttribute("category",category);
+
+        List<Category> categoryList = categoryService.listCategoryWithArticleCount();
+        model.addAttribute("categoryList",categoryList);
+//        categoryService.updateByPrimaryKeySelective(category);
+        return "/admin/category/edit";
+    }
+    /**
+     *后台编辑分类提交
+     * */
+    @RequestMapping("/editSubmit")
+    public String categoryEditSubmit(Category category){
+        categoryService.updateByPrimaryKeySelective(category);
+        System.out.println(category.getCategoryId());
+        return "redirect:/admin/category";
+    }
+    /**
      * 后台删除分类
      * */
     @RequestMapping("/delete/{id}")

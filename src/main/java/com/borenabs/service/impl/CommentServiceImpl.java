@@ -6,6 +6,8 @@ import com.borenabs.mapper.AdminCommentListMapper;
 import com.borenabs.mapper.ArticleMapper;
 import com.borenabs.mapper.CommentMapper;
 import com.borenabs.service.CommentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,8 +55,12 @@ public class CommentServiceImpl implements CommentService {
      *
      * @return*/
     @Override
-    public List<AdminCommentList> listCommentByPage() {
-        return adminCommentListMapper.adminCommentList();
+    public PageInfo<AdminCommentList> listCommentByPage(Integer pageIndex, Integer pageSize) {
+         //分页
+        PageHelper.startPage(pageIndex,pageSize);
+        List<AdminCommentList> commentList = adminCommentListMapper.adminCommentList();
+        PageInfo<AdminCommentList> pageInfo = new PageInfo<>(commentList,5);
+        return pageInfo;
     }
 
 }

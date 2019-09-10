@@ -32,12 +32,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category selectByPrimaryKey(Integer categoryId) {
-        return null;
+        return categoryMapper.selectByPrimaryKey(categoryId);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Category record) {
-        return 0;
+        return categoryMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
