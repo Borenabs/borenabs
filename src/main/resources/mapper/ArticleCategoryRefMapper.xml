@@ -33,4 +33,11 @@
     article_category_ref
     where category_id = #{value}
   </select>
+  <insert id="insertArticleCategory" parameterType="com.borenabs.entity.ArticleCategoryRef">
+    insert into article_category_ref (article_id, category_id)
+    values (#{articleId,jdbcType=INTEGER},#{categoryId,jdbcType=INTEGER})
+  </insert>
+  <delete id="deleteArticleCategoryByArticleId" parameterType="java.lang.Integer">
+    delete from article_category_ref where article_id = #{articleId}
+  </delete>
 </mapper>

@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int insert(Comment record) {
-        return 0;
+        return commentMapper.insert(record);
     }
 
     @Override
@@ -61,6 +61,15 @@ public class CommentServiceImpl implements CommentService {
         List<AdminCommentList> commentList = adminCommentListMapper.adminCommentList();
         PageInfo<AdminCommentList> pageInfo = new PageInfo<>(commentList,5);
         return pageInfo;
+    }
+    /**
+     * 文章评论列表
+     * @param articleId
+     * @return List<Comment>
+     * */
+    @Override
+    public List<Comment> listCommentByArticleId(Integer articleId) {
+        return commentMapper.listCommentByArticleId(articleId);
     }
 
 }

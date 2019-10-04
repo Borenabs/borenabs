@@ -178,5 +178,13 @@
     from user
     where user_email=#{userEmail}
   </select>
-
+  <!--根据用户名或邮箱获得用户-->
+  <select id="getUserByNameOrEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM user
+    where user_name=#{value} OR user_email=#{value}
+    AND user_status = 1
+    limit 1
+  </select>
 </mapper>

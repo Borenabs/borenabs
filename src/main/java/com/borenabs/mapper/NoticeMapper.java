@@ -18,4 +18,9 @@ public interface NoticeMapper {
     int updateByPrimaryKey(Notice record);
 
     List<Notice> queryAllNotice();
+
+    /**
+     * 前台显示公告列表
+     * */
+    List<Notice> noticeList();
 }

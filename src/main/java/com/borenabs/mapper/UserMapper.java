@@ -43,4 +43,12 @@ public interface UserMapper {
      * */
     User selectUserByEmail(String userEmail);
 
+    /**
+     * 根据用户名或Email获得用户
+     *
+     * @param str 用户名或Email
+     * @return 用户
+     */
+    User getUserByNameOrEmail(String str);
+
 }

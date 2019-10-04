@@ -103,4 +103,9 @@
       menu_order = #{menuOrder,jdbcType=INTEGER}
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
+  <select id="menuList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from menu
+  </select>
 </mapper>

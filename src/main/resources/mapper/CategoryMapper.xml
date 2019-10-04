@@ -12,6 +12,7 @@
   <sql id="Base_Column_List" >
     category_id, category_pid, category_name, category_description, category_order, category_icon
   </sql>
+  <sql id="tb">category</sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -107,5 +108,30 @@
     select
     <include refid="Base_Column_List" />
     from category order by category_order desc,category_id asc
+  </select>
+
+  <select id="categorys" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from category
+  </select>
+  <select id="countCategory" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM
+    <include refid="tb"/>
+  </select>
+  <select id="selectArticleCategoryListByArticleId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+      category.category_id,
+      category.category_pid,
+      category.category_name,
+      category.category_description,
+      category.category_order,
+      category.category_icon
+    FROM
+        article
+    INNER JOIN article_category_ref ON article.article_id = article_category_ref.article_id
+    INNER JOIN category ON article_category_ref.category_id = category.category_id
+    WHERE
+        article.article_id = #{articleId}
   </select>
 </mapper>

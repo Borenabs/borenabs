@@ -21,6 +21,7 @@
     comment_author_email, comment_author_url, comment_author_avatar, comment_content, 
     comment_agent, comment_ip, comment_create_time, comment_role
   </sql>
+  <sql id="tb">comment</sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -190,5 +191,14 @@
     select
     <include refid="Base_Column_List" />
     from comment
+  </select>
+  <select id="listCommentByArticleId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    <include refid="tb"/>
+    WHERE
+    comment_article_id = #{id}
+    ORDER BY comment_id ASC
   </select>
 </mapper>

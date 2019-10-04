@@ -9,4 +9,11 @@ public class ArticleCategoryRef {
 
     private Integer categoryId;
 
+    public ArticleCategoryRef(Integer articleId, Integer categoryId) {
+        this.articleId = articleId;
+        this.categoryId = categoryId;
+    }
+
+    public ArticleCategoryRef() {
+    }
 }

@@ -121,4 +121,10 @@
       notice_order = #{noticeOrder,jdbcType=INTEGER}
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
+  <!--前台获取公告列表-->
+  <select id="noticeList" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from notice where notice_status = 1
+  </select>
 </mapper>

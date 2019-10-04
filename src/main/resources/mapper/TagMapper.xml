@@ -9,6 +9,7 @@
   <sql id="Base_Column_List" >
     tag_id, tag_name, tag_description
   </sql>
+  <sql id="tb">tag</sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -68,4 +69,25 @@
       tag_description = #{tagDescription,jdbcType=VARCHAR}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
+  <select id="tagList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tag
+  </select>
+  <!--获得标签总数-->
+  <select id="countTag" resultType="Integer">
+    SELECT COUNT(*) FROM <include refid="tb"/>
+  </select>
+  <select id="selectArticleTagListByArticleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+      tag.tag_id,
+      tag.tag_name,
+      tag.tag_description
+    FROM
+      article
+        INNER JOIN article_tag_ref ON article.article_id = article_tag_ref.article_id
+        INNER JOIN tag ON article_tag_ref.tag_id = tag.tag_id
+    WHERE
+      article.article_id = #{articleId}
+  </select>
 </mapper>

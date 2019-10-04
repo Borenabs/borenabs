@@ -2,6 +2,7 @@ package com.borenabs.entity;
 
 import lombok.Data;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Article {
@@ -26,5 +27,8 @@ public class Article {
     private Date articleUpdateTime;
 
     private Date articleCreateTime;
-
+    /**
+     * 非数据库字段
+     * */
+    List<Category> categoryList;
 }

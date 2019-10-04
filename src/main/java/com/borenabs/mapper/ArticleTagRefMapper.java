@@ -8,4 +8,6 @@ public interface ArticleTagRefMapper {
     int insert(ArticleTagRefKey record);
 
     int insertSelective(ArticleTagRefKey record);
+
+    int deleteByArticleId(Integer articleId);
 }

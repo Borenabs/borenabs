@@ -33,4 +33,7 @@
       </if>
     </trim>
   </insert>
+  <delete id="deleteByArticleId" parameterType="java.lang.Integer">
+    delete from article_tag_ref where article_id = #{articleId}
+  </delete>
 </mapper>

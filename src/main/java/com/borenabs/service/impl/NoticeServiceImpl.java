@@ -47,5 +47,13 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeMapper.deleteByPrimaryKey(id);
     }
 
+    /**
+     * 前台显示公告列表
+     * */
+    @Override
+    public List<Notice> noticeList() {
+        return noticeMapper.noticeList();
+    }
+
 
 }

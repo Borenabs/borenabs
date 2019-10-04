@@ -18,4 +18,17 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> categoryList();
+
+    List<Category> categorys();
+    /**
+     * 获得分类总数
+     *
+     * @return
+     */
+    Integer countCategory();
+
+    /**
+     * 通过文章id获取分类
+     * */
+    List<Category> selectArticleCategoryListByArticleId(Integer articleId);
 }

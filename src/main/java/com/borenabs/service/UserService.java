@@ -49,4 +49,12 @@ public interface UserService {
      * @param user 用户
      */
     void insertUser(User user);
+
+    /**
+     * 根据用户名和邮箱查询用户
+     *
+     * @param str 用户名或Email
+     * @return 用户
+     */
+    User getUserByNameOrEmail(String str);
 }

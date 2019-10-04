@@ -63,6 +63,30 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categoryList;
     }
+    /**
+     * 前台导航栏显示所有分类
+     * */
+    @Override
+    public List<Category> categorys() {
+        return categoryMapper.categorys();
+    }
+
+    /**
+     * 获得分类总数
+     *
+     * @return
+     */
+    @Override
+    public Integer countCategory() {
+        return categoryMapper.countCategory();
+    }
+    /**
+     * 通过文章id获取分类
+     * */
+    @Override
+    public List<Category> selectArticleCategoryListByArticleId(Integer articleId) {
+        return categoryMapper.selectArticleCategoryListByArticleId(articleId);
+    }
 
 
 }

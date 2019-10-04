@@ -21,4 +21,20 @@ public interface CategoryService {
      * 分类列表with文章数
      * */
     public List<Category> listCategoryWithArticleCount();
+
+    /**
+     * 前台导航栏显示所有分类
+     * */
+    List<Category> categorys();
+
+    /**
+     * 获得分类总数
+     *
+     * @return
+     */
+    Integer countCategory();
+    /**
+     * 通过文章id获取分类
+     * */
+    List<Category> selectArticleCategoryListByArticleId(Integer articleId);
 }

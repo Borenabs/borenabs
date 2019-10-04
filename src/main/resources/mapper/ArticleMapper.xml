@@ -19,10 +19,11 @@
     <result column="article_summary" property="articleSummary" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    article_id, article_user_id, article_title, article_view_count, article_comment_count, 
+    article_id, article_user_id, article_title, article_view_count, article_comment_count,
     article_like_count, article_is_comment, article_status, article_order, article_update_time, 
     article_create_time
   </sql>
+  <sql id="tb">article</sql>
   <sql id="Blob_Column_List" >
     article_content, article_summary
   </sql>
@@ -32,19 +33,19 @@
     ,
     <include refid="Blob_Column_List" />
     from article
-    where article_id = #{articleId,jdbcType=INTEGER}
+    where article_id = #{articleId,jdbcType=INTEGER} and article_status=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.borenabs.entity.ArticleWithBLOBs" >
-    insert into article (article_id, article_user_id, article_title, 
+  <insert id="insert" parameterType="com.borenabs.entity.ArticleWithBLOBs" useGeneratedKeys="true" keyProperty="articleId">
+    insert into article (article_id,article_user_id, article_title,
       article_view_count, article_comment_count, 
       article_like_count, article_is_comment, article_status, 
       article_order, article_update_time, article_create_time, 
       article_content, article_summary)
-    values (#{articleId,jdbcType=INTEGER}, #{articleUserId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, 
+    values (#{articleId,jdbcType=INTEGER},#{articleUserId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR},
       #{articleViewCount,jdbcType=INTEGER}, #{articleCommentCount,jdbcType=INTEGER}, 
       #{articleLikeCount,jdbcType=INTEGER}, #{articleIsComment,jdbcType=INTEGER}, #{articleStatus,jdbcType=INTEGER}, 
       #{articleOrder,jdbcType=INTEGER}, #{articleUpdateTime,jdbcType=TIMESTAMP}, #{articleCreateTime,jdbcType=TIMESTAMP}, 
@@ -188,7 +189,6 @@
       article_status = #{articleStatus,jdbcType=INTEGER},
       article_order = #{articleOrder,jdbcType=INTEGER},
       article_update_time = #{articleUpdateTime,jdbcType=TIMESTAMP},
-      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
       article_content = #{articleContent,jdbcType=LONGVARCHAR},
       article_summary = #{articleSummary,jdbcType=LONGVARCHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
@@ -207,4 +207,143 @@
       article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+  <!--前台文章列表-->
+  <select id="homeArticleList" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where article_status = 1
+    ORDER BY article_create_time DESC, article_id DESC
+  </select>
+  <select id="countArticle" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM
+    <include refid="tb"/>
+    WHERE article_status = 1
+  </select>
+  <select id="countArticleComment" resultType="java.lang.Integer">
+    SELECT SUM(article_comment_count)
+    FROM
+    <include refid="tb"/>
+    WHERE article_status = 1
+  </select>
+  <select id="countArticleView" resultType="java.lang.Integer">
+    SELECT SUM(article_view_count) FROM
+    <include refid="tb"/>
+    WHERE article_status = 1
+  </select>
+  <select id="getAfterArticle" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    <where>
+        article_id &lt; #{id} AND article_status = 1
+    </where>
+    ORDER BY article_id DESC
+    limit 1
+  </select>
+  <select id="getPreArticle" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    <where>
+      article_id > #{id} AND article_status = 1
+    </where>
+    ORDER BY article_id DESC
+    limit 1
+  </select>
+  <select id="listArticleByCommentCount" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    WHERE article_status = 1
+    ORDER BY
+    article_comment_count DESC,article_order DESC, article_id DESC
+    limit #{limit}
+  </select>
+  <select id="listRandomArticle" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    WHERE article_status = 1
+    ORDER BY
+    RAND()
+    limit #{limit}
+  </select>
+  <update id="updateCommentCount" parameterType="java.lang.Integer">
+    update article
+    set article_comment_count=
+          (
+            SELECT count(*) FROM `comment`
+            WHERE article.article_id=comment.comment_article_id
+          )
+    WHERE article_id=#{articleId}
+  </update>
+  <select id="categoryArticleList" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select DISTINCT
+      article.article_id,
+      article.article_user_id,
+      article.article_title,
+      article.article_content,
+      article.article_view_count,
+      article.article_comment_count,
+      article.article_like_count,
+      article.article_is_comment,
+      article.article_status,
+      article.article_order,
+      article.article_update_time,
+      article.article_create_time,
+      article.article_summary
+    from article
+    INNER JOIN article_category_ref ON article_category_ref.article_id = article.article_id
+    INNER JOIN category ON category.category_id = article_category_ref.category_id
+    WHERE category.category_id = #{articleId} and article.article_status =1
+    ORDER BY article_create_time DESC, article_id DESC
+  </select>
+  <select id="articleListByTag" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    SELECT DISTINCT
+      article.article_id,
+      article.article_user_id,
+      article.article_title,
+      article.article_content,
+      article.article_view_count,
+      article.article_comment_count,
+      article.article_like_count,
+      article.article_is_comment,
+      article.article_status,
+      article.article_order,
+      article.article_update_time,
+      article.article_create_time,
+      article.article_summary
+    FROM
+      article
+        INNER JOIN article_tag_ref ON article_tag_ref.article_id = article.article_id
+        INNER JOIN tag ON tag.tag_id = article_tag_ref.tag_id AND article.article_status = 1 AND tag.tag_id = #{tagId}
+    ORDER BY article_create_time DESC, article_id DESC
+  </select>
+  <select id="getArticleById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <select id="articleList" resultMap="ResultMapWithBLOBs" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    ORDER BY article_create_time DESC, article_id DESC
+  </select>
 </mapper>

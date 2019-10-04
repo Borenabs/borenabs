@@ -18,4 +18,10 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
 
     List<Comment> commentList();
+    /**
+     * 文章评论列表
+     * @param articleId
+     * @return List<Comment>
+     * */
+    List<Comment> listCommentByArticleId(Integer articleId);
 }

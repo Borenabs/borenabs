@@ -23,4 +23,11 @@ public interface CommentService {
      *
      * */
     PageInfo<AdminCommentList> listCommentByPage(Integer pageIndex, Integer pageSize);
+
+    /**
+     * 文章评论列表
+     * @param articleId
+     * @return List<Comment>
+     * */
+    List<Comment> listCommentByArticleId(Integer articleId);
 }

@@ -14,4 +14,9 @@ public interface NoticeService {
     Notice selectByPrimaryKey(Integer id);
 
     int deleteNotice(int id);
+
+    /**
+     * 前台显示公告列表
+     * */
+    List<Notice> noticeList();
 }

@@ -3,6 +3,7 @@ package com.borenabs.service.impl;
 import com.borenabs.entity.User;
 import com.borenabs.mapper.UserMapper;
 import com.borenabs.service.UserService;
+import com.borenabs.untils.MyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,6 +78,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertUser(User user) {
         user.setUserRegisterTime(new Date());
+        user.setUserPass(MyUtils.strToMd5(user.getUserPass()));
         userMapper.insert(user);
+    }
+    /**
+     * 根据用户名或Email获得用户
+     *
+     * @param str 用户名或Email
+     * @return 用户
+     */
+    @Override
+    public User getUserByNameOrEmail(String str) {
+        return userMapper.getUserByNameOrEmail(str);
     }
 }

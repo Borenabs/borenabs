@@ -14,4 +14,14 @@ public interface ArticleCategoryRefMapper {
      * @return 文章数量
      */
     int countArticleByCategoryId(Integer categoryId);
+
+    /**
+     * 插入文章分类
+     * */
+    int insertArticleCategory(Integer articleId,Integer categoryId);
+
+    /**
+     * 删除
+     * */
+    int deleteArticleCategoryByArticleId(Integer articleId);
 }
