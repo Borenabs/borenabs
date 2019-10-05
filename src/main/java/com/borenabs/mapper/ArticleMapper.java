@@ -81,4 +81,12 @@ public interface ArticleMapper {
      * 回显文章By文章ID
      * */
     ArticleWithBLOBs getArticleById(Integer articleId);
+    /**
+     * 前台显示留言板 article_status = 100;
+     * */
+    ArticleWithBLOBs showMessageBoard(Integer articleStatus);
+    /**
+     *留言时,查询留言板
+     * */
+    ArticleWithBLOBs selectMessageBoard(Integer articleId);
 }

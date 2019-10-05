@@ -346,4 +346,21 @@
     from article
     ORDER BY article_create_time DESC, article_id DESC
   </select>
+  <select id="showMessageBoard" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where article_status = #{articleStatus,jdbcType=INTEGER}
+    limit 1
+  </select>
+  <select id="selectMessageBoard" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where article_id = #{articleId,jdbcType=INTEGER} and article_status=100
+  </select>
 </mapper>

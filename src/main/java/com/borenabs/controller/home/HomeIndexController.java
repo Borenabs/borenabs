@@ -54,5 +54,4 @@ public class HomeIndexController {
         model.addAttribute("allTags",tagList);
         return "/home/index";
     }
-
 }

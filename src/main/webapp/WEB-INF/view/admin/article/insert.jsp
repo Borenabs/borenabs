@@ -40,7 +40,6 @@
 			<div class="layui-input-block">
 				<textarea class="layui-textarea layui-hide" name="articleContent" lay-verify="content" id="content"></textarea>
 			</div>
-
 		</div>
 
 		<div class="layui-form-item">
@@ -55,18 +54,6 @@
 					</c:forEach>
 				</select>
 			</div>
-			<%--//二级联动
-            form.on("select(articleParentCategoryId)",function () {
-                var optionstring = "";
-                var articleParentCategoryId = $("#articleParentCategoryId").val();
-                <c:forEach items="${categoryList}" var="c">
-                if(articleParentCategoryId==${c.categoryPid}) {
-                    optionstring += "<option name='childCategory' value='${c.categoryId}'>${c.categoryName}</option>";
-                }
-                </c:forEach>
-                $("#articleChildCategoryId").html("<option value=''selected>二级分类</option>"+optionstring);
-                form.render('select'); //这个很重要
-            })--%>
 			<div class="layui-input-inline">
 				<select name="articleChildCategoryId" id="articleChildCategoryId">
 					<option value="" selected>二级分类</option>
@@ -95,14 +82,6 @@
 				<button type="reset" class="layui-btn layui-btn-primary" onclick="getCateIds()">重置</button>
 			</div>
 		</div>
-		<blockquote class="layui-elem-quote layui-quote-nm">
-			温馨提示：<br>
-			1、文章内容的数据表字段类型为MEDIUMTEXT,每篇文章内容请不要超过500万字 <br>
-			2、写文章之前，请确保标签和分类存在，否则可以先新建；请勿刷新页面，博客不会自动保存 <br>
-			3、插入代码前，可以点击 <a href="http://liuyanzhao.com/code-highlight.html" target="_blank">代码高亮</a>,将代码转成HTML格式
-
-		</blockquote>
-
 	</form>
 
 

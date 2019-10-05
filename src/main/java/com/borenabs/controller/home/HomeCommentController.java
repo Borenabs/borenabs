@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class HomeCommentController {
     /**
      *添加评论
      */
+    @ResponseBody
     @RequestMapping(value = "/comment",method = {RequestMethod.POST})
     public JsonResult InsertComment(HttpServletRequest request, Comment comment){
         comment.setCommentCreateTime(new Date());

@@ -85,4 +85,12 @@ public interface ArticleService {
      * 后台显示所有文章
      * */
     PageInfo<ArticleWithBLOBs> articleList(Integer pageIndex,Integer pageSize);
+    /**
+     * 前台显示留言板 article_status = 100;
+     * */
+    ArticleWithBLOBs showMessageBoard(Integer articleStatus);
+    /**
+     *留言时,查询留言板
+     * */
+    ArticleWithBLOBs selectMessageBoard(Integer articleId);
 }

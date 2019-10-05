@@ -166,6 +166,20 @@ public class ArticleServiceImpl implements  ArticleService {
         PageInfo<ArticleWithBLOBs> pageInfo = new PageInfo<>(adminArticleList);
         return pageInfo;
     }
+    /**
+     * 查询留言板 article_status = 100;
+     * */
+    @Override
+    public ArticleWithBLOBs showMessageBoard(Integer articleStatus) {
+        return articleMapper.showMessageBoard(articleStatus);
+    }
+    /**
+     *留言时,查询留言板
+     * */
+    @Override
+    public ArticleWithBLOBs selectMessageBoard(Integer articleId) {
+        return articleMapper.selectMessageBoard(articleId);
+    }
 
 
 }

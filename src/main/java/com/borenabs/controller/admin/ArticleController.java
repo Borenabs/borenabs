@@ -7,6 +7,7 @@ import com.borenabs.mapper.ArticleTagRefMapper;
 import com.borenabs.service.ArticleService;
 import com.borenabs.service.CategoryService;
 import com.borenabs.service.TagService;
+import com.borenabs.untils.MyUtils;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.omg.PortableInterceptor.INACTIVE;
@@ -80,8 +81,9 @@ public class ArticleController {
         }
         article.setArticleTitle(articleParam.getArticleTitle());
         /**摘要*/
-        int summaryLength = 100;
-        String summary = articleParam.getArticleContent();
+        int summaryLength = 30;
+        /**去除html标签*/
+        String summary = MyUtils.delHTMLTag(articleParam.getArticleContent());
         if (summary.length()>summaryLength){
             article.setArticleSummary(summary.substring(0,summaryLength));
         }else{
@@ -153,8 +155,9 @@ public class ArticleController {
         ArticleWithBLOBs article = new ArticleWithBLOBs();
         article.setArticleTitle(articleParam.getArticleTitle());
         /**摘要*/
-        int summaryLength = 100;
-        String summary = articleParam.getArticleContent();
+        int summaryLength = 30;
+        /**去除html标签*/
+        String summary = MyUtils.delHTMLTag(articleParam.getArticleContent());
         if (summary.length()>summaryLength){
             article.setArticleSummary(summary.substring(0,summaryLength));
         }else{
