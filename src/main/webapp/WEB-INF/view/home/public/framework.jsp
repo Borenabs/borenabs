@@ -23,16 +23,11 @@
 	<meta name="MobileOptimized" content="width"/>
 	<meta name="HandheldFriendly" content="true"/>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/logo.ico">
-	<rapid:block name="description">
-		<%--<meta name="description" content="${options.optionMetaDescrption}"/>--%>
-	</rapid:block>
-	<rapid:block name="keywords">
-<%--		<meta name="keywords" content="${options.optionMetaKeyword}"/>--%>
-	</rapid:block>
+
 	<rapid:block name="title">
-		<%--<title>
-				${options.optionSiteTitle}-${options.optionSiteDescrption}
-		</title>--%>
+		<title>
+				borenabs
+		</title>
 	</rapid:block>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css">
@@ -53,8 +48,6 @@
 	</div>
 	<div class="clear"></div>
 	<rapid:block name="link"></rapid:block>
-<%--	<%@ include file="part/footer.jsp" %>--%>
-
 </div>
 
 <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>

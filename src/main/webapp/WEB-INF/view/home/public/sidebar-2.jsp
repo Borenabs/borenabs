@@ -63,14 +63,7 @@
                 <li><i class="fa fa-commenting-o"></i> 留言数量：${siteBasicStatistics[1]} 条</li>
                 <li><i class="fa fa-folder-o"></i> 分类数量：${siteBasicStatistics[2]} 个</li>
                 <li><i class="fa fa-tags"></i> 标签总数：${siteBasicStatistics[3]} 个</li>
-                <%--<li><i class="fa fa-link"></i> 链接数量：${siteBasicStatistics[4]} 个</li>--%>
                 <li><i class="fa fa-eye"></i> 浏览总量：${siteBasicStatistics[4]} 次</li>
-                <%--<li><i class="fa fa-pencil-square-o"></i> 最后更新：
-                    <span style="color:#2F889A">
-                                        <fmt:formatDate value="${lastUpdateArticle.articleUpdateTime}" pattern="yyyy年MM月dd日"/>
-
-                                   </span>
-                </li>--%>
             </ul>
         </div>
         <div class="clear"></div>
@@ -84,7 +77,7 @@
         </h3>
         <div class="tagcloud">
             <c:forEach items="${allTags}" var="tag">
-                <a href="${pageContext.request.contextPath}/tag/${tag.tagId}"
+                <a href="/tag/${tag.tagId}"
                    class="tag-link-129 tag-link-position-1"
                    style="font-size: 14px;">
                         ${tag.tagName}
@@ -95,30 +88,6 @@
         <div class="clear"></div>
     </aside>
     <%--所有标签 end--%>
-
-
-    <%--最新评论 start--%>
-    <%--<aside id="recent_comments-2" class="widget recent_comments wow fadeInUp" data-wow-delay="0.3s"><h3
-            class="widget-title"><i class="fa fa-bars"></i>近期评论</h3>
-        <div id="message" class="message-widget">
-            <ul>
-                <c:forEach items="${recentCommentList}" var="r">
-                <li style="border: none;">
-                    <a href="/article/${r.commentArticleId}/#anchor-comment-${r.commentId}"  rel="external nofollow">
-                        &lt;%&ndash;<img alt="" src="${r.commentAuthorAvatar}" class="avatar avatar-64 photo" height="64" width="64">&ndash;%&gt;
-                        <span class="comment_author">
-                            <strong>${r.commentAuthorName}</strong>
-                        </span>
-                            ${r.commentContent}
-                    </a>
-                </li>
-                </c:forEach>
-            </ul>
-        </div>
-        <div class="clear"></div>
-    </aside>--%>
-    <%--最新评论 end--%>
-
 </div>
 
 

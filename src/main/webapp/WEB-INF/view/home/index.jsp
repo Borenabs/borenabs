@@ -20,7 +20,7 @@
 				<ul style="margin-top: 0px;">
 					<c:forEach items="${noticeList}" var="n">
 						<li class="scrolltext-title">
-							<a href="${pageContext.request.contextPath}/notice/${n.noticeId}" rel="bookmark">${n.noticeTitle}</a>
+							<a href="/notice/${n.noticeId}" rel="bookmark">${n.noticeTitle}</a>
 						</li>
 					</c:forEach>
 				</ul>
@@ -37,7 +37,7 @@
 
 				<article class="post type-post">
 					<figure class="thumbnail">
-						<a href="${pageContext.request.contextPath}/article/${a.articleId}">
+						<a href="/article/${a.articleId}">
 							<img width="280" height="210"
 								 src="${pageContext.request.contextPath}/img/thumbnail/random/img_${a.articleId%15}.jpg"
 								 class="attachment-content size-content wp-post-image"
@@ -84,15 +84,7 @@
                             <span class="comment">&nbsp;&nbsp;
                                 <a href="${pageContext.request.contextPath}/article/${a.articleId}#comments" rel="external nofollow">
                                   <i class="fa fa-comment-o"></i>
-                                    <c:choose>
-										<c:when test="${a.articleCommentCount == 0}">
-											评论
-										</c:when>
-										<c:otherwise>
-											评论${a.articleCommentCount}
-										</c:otherwise>
-									</c:choose>
-
+										${a.articleCommentCount}
                                 </a>
                             </span>
                         </span>

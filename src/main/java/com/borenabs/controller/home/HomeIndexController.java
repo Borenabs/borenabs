@@ -49,9 +49,6 @@ public class HomeIndexController {
         /**公告*/
         List<Notice> noticeList = noticeService.noticeList();
         model.addAttribute("noticeList",noticeList);
-        /**标签*/
-        List<Tag> tagList = tagService.tagList();
-        model.addAttribute("allTags",tagList);
         return "/home/index";
     }
 }

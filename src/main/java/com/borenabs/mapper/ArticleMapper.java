@@ -89,4 +89,8 @@ public interface ArticleMapper {
      *留言时,查询留言板
      * */
     ArticleWithBLOBs selectMessageBoard(Integer articleId);
+    /**
+     * 统计留言数
+     * */
+    int countArticleMessage();
 }

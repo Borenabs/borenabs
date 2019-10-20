@@ -42,6 +42,10 @@
             <bean class="com.borenabs.interceptor.HomeResourceInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.borenabs.interceptor.HomeSidebarInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
             <mvc:mapping path="/admin/**"/>
             <mvc:exclude-mapping path="/admin"/>
             <mvc:exclude-mapping path="/admin/loginVerify"/>

@@ -52,18 +52,6 @@ public class HomeMessageController {
         //评论列表
         List<Comment> commentList = commentService.listCommentByArticleId(messageBoard.getArticleId());
         model.addAttribute("commentList",commentList);
-
-        //侧边栏标签
-        List<Tag> allTags = tagService.tagList();
-        model.addAttribute("allTags",allTags);
-
-        //获得热评文章
-        List<Article> mostCommentArticleList = articleService.listArticleByCommentCount(10);
-        model.addAttribute("mostCommentArticleList",mostCommentArticleList);
-
-        //随机文章
-        List<Article> randomArticleList = articleService.listRandomArticle(10);
-        model.addAttribute("randomArticleList",randomArticleList);
         return "/home/page/message";
     }
 

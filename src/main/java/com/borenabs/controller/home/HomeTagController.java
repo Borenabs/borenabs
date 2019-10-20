@@ -39,17 +39,6 @@ public class HomeTagController {
         PageInfo<ArticleWithBLOBs> articleListByTagPageInfo = articleService.articleListByTag(tagId,pageIndex,pageSize);
         model.addAttribute("pageInfo",articleListByTagPageInfo);
         model.addAttribute("pageUrlPrefix", "/tag/"+pageIndex+"?pageIndex");
-
-        //侧边栏
-        //标签列表显示
-        List<Tag> allTagList = tagService.tagList();
-        model.addAttribute("allTags", allTagList);
-        //获得随机文章
-        List<Article> randomArticleList = articleService.listRandomArticle(10);
-        model.addAttribute("randomArticleList", randomArticleList);
-        //获得热评文章
-        List<Article> mostCommentArticleList = articleService.listArticleByCommentCount(10);
-        model.addAttribute("mostCommentArticleList", mostCommentArticleList);
         return "/home/page/articleListByTag";
     }
 }

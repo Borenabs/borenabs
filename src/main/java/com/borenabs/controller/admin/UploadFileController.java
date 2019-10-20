@@ -24,7 +24,7 @@ public class UploadFileController {
     /**
      * 文件保存目录，物理路径
      */
-    public final String rootPath = "E:\\Java\\borenabs\\src\\main\\webapp\\uploads";
+    public final String rootPath = "/usr/local/java/tomcat/webapps/ROOT/uploads";
 
     public final String allowSuffix = ".bmp.jpg.jpeg.png.gif.pdf.doc.zip.rar.gz";
 

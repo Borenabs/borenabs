@@ -215,7 +215,7 @@ $("#cancel-comment-reply-link").click(function () {
     $("#reply-title-word").html("发表评论");
 })
 
-/*//文章浏览量+1
+//文章浏览量+1
 function increaseViewCount(articleId) {
     if ($.cookie("viewId") != articleId || $.cookie("viewId") == null) {
         $.ajax({
@@ -240,7 +240,7 @@ function increaseViewCount(articleId) {
             },
         });
     }
-}*/
+}
 
 //点赞+1
 function increaseLikeCount() {

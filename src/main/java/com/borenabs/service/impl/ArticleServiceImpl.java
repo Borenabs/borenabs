@@ -47,7 +47,7 @@ public class ArticleServiceImpl implements  ArticleService {
 
     @Override
     public int updateByPrimaryKeySelective(ArticleWithBLOBs record) {
-        return 0;
+        return articleMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ArticleServiceImpl implements  ArticleService {
 
     @Override
     public int updateByPrimaryKey(Article record) {
-        return 0;
+        return articleMapper.updateByPrimaryKey(record);
     }
     /**
      * 前台页面显示文章列表
@@ -179,6 +179,13 @@ public class ArticleServiceImpl implements  ArticleService {
     @Override
     public ArticleWithBLOBs selectMessageBoard(Integer articleId) {
         return articleMapper.selectMessageBoard(articleId);
+    }
+    /**
+     * 统计留言数
+     * */
+    @Override
+    public int countArticleMessage() {
+        return articleMapper.countArticleMessage();
     }
 
 

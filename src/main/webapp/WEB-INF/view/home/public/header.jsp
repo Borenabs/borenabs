@@ -17,48 +17,12 @@
 
 <%--导航 start--%>
 <header id="masthead" class="site-header">
-	<%--顶部菜单 start--%>
-	<%--<nav id="top-header">
-		<div class="top-nav">
-			<div class="user-login">
-				<c:choose>
-					<c:when test="${sessionScope.user==null}">
-						<a href="/admin">登录</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/admin">进入后台</a>
-					</c:otherwise>
-				</c:choose>
-			</div>
-			<div class="menu-topmenu-container">
-				<ul id="menu-topmenu" class="top-menu">
-					<c:forEach items="${menuList}" var="m">
-						<li class="menu-item">
-							<c:if test="${m.menuLevel==1}">
-								<a href="${m.menuUrl}" >
-									<i class="${m.menuIcon}"></i>
-									<span class="font-text">${m.menuName}&nbsp;</span>&nbsp;
-								</a>
-							</c:if>
-						</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</div>
-	</nav>--%><!-- #top-header -->
-	<%--顶部菜单 end--%>
-
 	<%--主要菜单 satrt--%>
 	<div id="menu-box">
 		<div id="top-menu">
                 <span class="nav-search">
                     <i class="fa fa-search"></i>
                 </span>
-			<%--<div class="logo-site"><h1 class="site-title">
-				<a href="/" title="${options.optionSiteTitle}">${options.optionSiteTitle}</a>
-			</h1>
-				<p class="site-description">${options.optionSiteDescrption}</p>
-			</div>--%>
 			<!-- .logo-site -->
 			<div id="site-nav-wrap">
 				<div id="sidr-close">
@@ -72,7 +36,7 @@
 						<ul id="menu-pcmenu" class="down-menu nav-menu sf-js-enabled sf-arrows">
 
 							<li>
-								<a href="${pageContext.request.contextPath}/">
+								<a href="/">
 									<i class="fa-home fa"></i>
 									<span class="font-text">首页</span>
 								</a>
@@ -81,7 +45,7 @@
 							<c:forEach items="${categoryList}" var="category">
 								<c:if test="${category.categoryPid==0}">
 									<li>
-										<a href="${pageContext.request.contextPath}/category/${category.categoryId}">
+										<a href="/category/${category.categoryId}">
 											<i class="${category.categoryIcon}"></i>
 											<span class="font-text">${category.categoryName}&nbsp;</span>
 										</a>
@@ -89,7 +53,7 @@
 											<c:forEach items="${categoryList}" var="cate">
 												<c:if test="${cate.categoryPid==category.categoryId}">
 													<li>
-														<a href="${pageContext.request.contextPath}/category/${cate.categoryId}" target="_blank">${cate.categoryName}</a>
+														<a href="/category/${cate.categoryId}" target="_blank">${cate.categoryName}</a>
 													</li>
 												</c:if>
 											</c:forEach>
@@ -108,6 +72,12 @@
 									</li>
 								</c:if>
 							</c:forEach>
+							<c:if test="${sessionScope.user!=null}">
+								<li>
+									<a href="/admin/article">后台</a>
+								</li>
+							</c:if>
+
 						</ul>
 					</div>
 				</nav>

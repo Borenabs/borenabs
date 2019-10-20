@@ -8,19 +8,6 @@
 <div id="sidebar" class="widget-area all-sidebar"
      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 
-        <%--搜索框--%>
-        <%--<aside class="widget widget_search">
-            <div class="searchbar">
-                <form method="get" id="searchform1" action="/search">
-                    <span> <input type="text" value="" name="keywords" id="s1" placeholder="输入搜索内容" required="">
-                        <button type="submit" id="searchsubmit1">搜索</button>
-                    </span>
-                </form>
-            </div>
-            <div class="clear"></div>
-        </aside>--%>
-        <%--搜索框--%>
-
         <%--热评文章 start--%>
         <aside class="widget hot_comment" >
             <h3 class="widget-title">
@@ -30,7 +17,7 @@
                 <ul>
                     <c:forEach items="${mostCommentArticleList}" var="m">
                         <li>
-                            <a href="${pageContext.request.contextPath}/article/${m.articleId}" rel="bookmark" >
+                            <a href="/article/${m.articleId}" rel="bookmark" >
                                     ${m.articleTitle}
                             </a>
                         </li>
@@ -48,7 +35,7 @@
             </h3>
             <div class="tagcloud">
                 <c:forEach items="${allTags}" var="t">
-                    <a href="${pageContext.request.contextPath}/tag/${t.tagId}"
+                    <a href="/tag/${t.tagId}"
                        class="tag-link-129 tag-link-position-1"
                        style="font-size: 14px;">
                             ${t.tagName}
@@ -69,7 +56,7 @@
                 <ul>
                     <c:forEach items="${randomArticleList}" var="r">
                         <li>
-                            <a href="${pageContext.request.contextPath}/article/${r.articleId}" rel="bookmark">
+                            <a href="/article/${r.articleId}" rel="bookmark">
                                     ${r.articleTitle}
                             </a>
                         </li>

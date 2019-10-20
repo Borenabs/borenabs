@@ -34,12 +34,6 @@ public class HomeResourceInterceptor implements HandlerInterceptor {
     @Autowired
     private TagService tagService;
 
-    /*@Autowired
-    private LinkService linkService;*/
-
-    /*@Autowired
-    private OptionsService optionsService;*/
-
     @Autowired
     private MenuService menuService;
 
@@ -58,21 +52,11 @@ public class HomeResourceInterceptor implements HandlerInterceptor {
         //获得网站概况
         List<String> siteBasicStatistics = new ArrayList<String>();
         siteBasicStatistics.add(articleService.countArticle() + "");
-        siteBasicStatistics.add(articleService.countArticleComment() + "");
+        siteBasicStatistics.add(articleService.countArticleMessage() + "");
         siteBasicStatistics.add(categoryService.countCategory() + "");
         siteBasicStatistics.add(tagService.countTag() + "");
-//        siteBasicStatistics.add(linkService.countLink(LinkStatus.NORMAL.getValue()) + "");
         siteBasicStatistics.add(articleService.countArticleView() + "");
         request.setAttribute("siteBasicStatistics", siteBasicStatistics);
-
-        //最后更新的文章
-        /*Article lastUpdateArticle = articleService.getLastUpdateArticle();
-        request.setAttribute("lastUpdateArticle", lastUpdateArticle);*/
-
-        //页脚显示
-        //博客基本信息显示(Options)
-        /*Options options = optionsService.getOptions();
-        request.setAttribute("options", options);*/
 
         HttpSession session = request.getSession();
         if (session!=null){
