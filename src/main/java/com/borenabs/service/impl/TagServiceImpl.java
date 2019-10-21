@@ -14,7 +14,7 @@ public class TagServiceImpl implements TagService {
     TagMapper tagMapper;
     @Override
     public int deleteByPrimaryKey(Integer tagId) {
-        return 0;
+        return tagMapper.deleteByPrimaryKey(tagId);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public int insertSelective(Tag record) {
-        return 0;
+        return tagMapper.insertSelective(record);
     }
 
     @Override
@@ -34,12 +34,12 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public int updateByPrimaryKeySelective(Tag record) {
-        return 0;
+        return tagMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Tag record) {
-        return 0;
+        return tagMapper.updateByPrimaryKey(record);
     }
 
     /**前台获取所有标签*/

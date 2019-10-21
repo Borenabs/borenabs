@@ -6,6 +6,12 @@
     <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
     <result column="tag_description" property="tagDescription" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.borenabs.entity.Tag" >
+    <id column="tag_id" property="tagId" jdbcType="INTEGER" />
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+    <result column="tag_description" property="tagDescription" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     tag_id, tag_name, tag_description
   </sql>
@@ -69,10 +75,10 @@
       tag_description = #{tagDescription,jdbcType=VARCHAR}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
-  <select id="tagList" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tag
+  <select id="tagList" resultMap="BaseResultMap1">
+    SELECT t.tag_id,t.tag_name,t.tag_description,a.count FROM tag t LEFT JOIN
+    (SELECT tag_id,COUNT(tag_id) as count FROM article_tag_ref GROUP BY tag_id) a
+    ON a.tag_id = t.tag_id ORDER BY t.tag_id ASC
   </select>
   <!--获得标签总数-->
   <select id="countTag" resultType="Integer">

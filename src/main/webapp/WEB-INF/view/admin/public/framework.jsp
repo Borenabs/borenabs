@@ -60,9 +60,9 @@
 					<a class="" href="javascript:;">文章</a>
 					<dl class="layui-nav-child">
 						<dd><a href="${pageContext.request.contextPath}/admin/article">全部文章</a></dd>
-						<dd><a href="${pageContext.request.contextPath}/admin/article/publish">写文章</a></dd>
+						<dd><a href="${pageContext.request.contextPath}/admin/article/publish">发布文章</a></dd>
 						<dd><a href="${pageContext.request.contextPath}/admin/category">全部分类</a></dd>
-						<dd><a href="javascript:;">全部标签</a></dd>
+						<dd><a href="${pageContext.request.contextPath}/admin/tag">全部标签</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item"><a href="${pageContext.request.contextPath}/admin/comment">评论</a></li>
