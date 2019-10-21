@@ -23,6 +23,6 @@
         <include refid="Base_Column_List" />
         FROM
         article
-        INNER JOIN comment ON comment_article_id = article_id
+        INNER JOIN comment ON comment_article_id = article_id and article.article_status = 1
     </select>
 </mapper>

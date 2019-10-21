@@ -3,6 +3,7 @@ package com.borenabs.controller.home;
 import com.borenabs.dto.JsonResult;
 import com.borenabs.entity.Article;
 import com.borenabs.entity.Comment;
+import com.borenabs.entity.User;
 import com.borenabs.service.ArticleService;
 import com.borenabs.service.CommentService;
 import com.borenabs.untils.MyUtils;
@@ -32,15 +33,20 @@ public class HomeCommentController {
         comment.setCommentCreateTime(new Date());
         comment.setCommentIp(MyUtils.getIpAddr(request));
         if (request.getSession().getAttribute("user")!=null){
+            User user = (User)request.getSession().getAttribute("user");
             comment.setCommentRole(1); //博主
+            comment.setCommentAuthorAvatar(user.getUserAvatar());
+            comment.setCommentAuthorName(user.getUserName());
+            comment.setCommentAuthorEmail(user.getUserEmail());
+            comment.setCommentAuthorUrl(user.getUserUrl());
         }else {
             comment.setCommentRole(0);//游客
+            comment.setCommentAuthorAvatar(MyUtils.getGravatar(comment.getCommentAuthorEmail()));
+            comment.setCommentAuthorName(comment.getCommentAuthorName());
+            comment.setCommentAuthorEmail(comment.getCommentAuthorEmail());
+            comment.setCommentAuthorUrl(comment.getCommentAuthorUrl());
         }
-        comment.setCommentAuthorAvatar(MyUtils.getGravatar(comment.getCommentAuthorEmail()));
         comment.setCommentContent(comment.getCommentContent());
-        comment.setCommentAuthorName(comment.getCommentAuthorName());
-        comment.setCommentAuthorEmail(comment.getCommentAuthorEmail());
-        comment.setCommentAuthorUrl(comment.getCommentAuthorUrl());
         try{
             commentService.insert(comment);
             //获取当前被评论的文章
@@ -53,4 +59,6 @@ public class HomeCommentController {
         }
         return new JsonResult().ok();
     }
+
+
 }

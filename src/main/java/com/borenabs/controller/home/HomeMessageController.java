@@ -65,14 +65,19 @@ public class HomeMessageController {
         comment.setCommentIp(MyUtils.getIpAddr(request));
         if (request.getSession().getAttribute("user")!=null){
             comment.setCommentRole(1); //博主
+            User user = (User)request.getSession().getAttribute("user");
+            comment.setCommentAuthorAvatar(user.getUserAvatar());
+            comment.setCommentAuthorName(user.getUserName());
+            comment.setCommentAuthorEmail(user.getUserEmail());
+            comment.setCommentAuthorUrl(user.getUserUrl());
         }else {
             comment.setCommentRole(0);//游客
+            comment.setCommentAuthorAvatar(MyUtils.getGravatar(comment.getCommentAuthorEmail()));
+            comment.setCommentAuthorName(comment.getCommentAuthorName());
+            comment.setCommentAuthorEmail(comment.getCommentAuthorEmail());
+            comment.setCommentAuthorUrl(comment.getCommentAuthorUrl());
         }
-        comment.setCommentAuthorAvatar(MyUtils.getGravatar(comment.getCommentAuthorEmail()));
         comment.setCommentContent(comment.getCommentContent());
-        comment.setCommentAuthorName(comment.getCommentAuthorName());
-        comment.setCommentAuthorEmail(comment.getCommentAuthorEmail());
-        comment.setCommentAuthorUrl(comment.getCommentAuthorUrl());
         try{
             commentService.insert(comment);
             //获取留言板

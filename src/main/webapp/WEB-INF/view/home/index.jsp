@@ -78,8 +78,9 @@
                             &nbsp;&nbsp;
                             </span>
                             <span class="views">
-                                <i class="fa fa-eye"></i>
+                                <i class="fa fa-eye">
                                     ${a.articleViewCount} views
+								</i>
                             </span>
                             <span class="comment">&nbsp;&nbsp;
                                 <a href="${pageContext.request.contextPath}/article/${a.articleId}#comments" rel="external nofollow">

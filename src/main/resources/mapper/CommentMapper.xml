@@ -201,4 +201,12 @@
     comment_article_id = #{id}
     ORDER BY comment_id ASC
   </select>
+  <select id="childCommentList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    <include refid="tb"/>
+    WHERE
+    comment_pid = #{id}
+  </select>
 </mapper>

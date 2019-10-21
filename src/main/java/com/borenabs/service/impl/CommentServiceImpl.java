@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
     AdminCommentListMapper adminCommentListMapper;
     @Override
     public int deleteByPrimaryKey(Integer commentId) {
-        return 0;
+        return commentMapper.deleteByPrimaryKey(commentId);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment selectByPrimaryKey(Integer commentId) {
-        return null;
+        return commentMapper.selectByPrimaryKey(commentId);
     }
 
     @Override
@@ -70,6 +70,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> listCommentByArticleId(Integer articleId) {
         return commentMapper.listCommentByArticleId(articleId);
+    }
+    /**
+     * 查询子评论
+     * */
+    @Override
+    public List<Comment> childCommentList(Integer commentPid) {
+        return commentMapper.childCommentList(commentPid);
     }
 
 }

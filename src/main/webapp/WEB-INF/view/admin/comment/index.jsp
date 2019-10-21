@@ -54,17 +54,12 @@
 					<td class="dashboard-comment-wrap">
 							${c.commentContent}
 						<div class="row-actions">
-                                     <span class="">
-                                        <a href="/admin/comment/reply/${c.commentId}">
-                                            回复
-                                        </a>
-                                     </span>
 							<span class="">
-                                        <a href="/admin/comment/edit/${c.commentId}">编辑</a>
-                                     </span>
+								<a href="/admin/comment/reply/${c.commentId}">回复</a>
+							</span>
 							<span class=""> |
-                                        <a href="javascript:void(0)" onclick="deleteComment(${c.commentId})">删除</a>
-                                     </span>
+								<a href="javascript:void(0)" onclick="deleteComment(${c.commentId})">删除</a>
+							</span>
 						</div>
 					</td>
 					<td>

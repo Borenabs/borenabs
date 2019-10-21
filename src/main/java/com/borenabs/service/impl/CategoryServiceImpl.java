@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
     ArticleCategoryRefMapper articleCategoryRefMapper;
     @Override
     public int deleteByPrimaryKey(Integer categoryId) {
-        return 0;
+        return categoryMapper.deleteByPrimaryKey(categoryId);
     }
 
     @Override

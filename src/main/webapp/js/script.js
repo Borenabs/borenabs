@@ -214,10 +214,10 @@ $("#cancel-comment-reply-link").click(function () {
     $("input[name=commentPname]").attr("value", "");
     $("#reply-title-word").html("发表评论");
 })
-
+//|| $.cookie("viewId") == null
 //文章浏览量+1
 function increaseViewCount(articleId) {
-    if ($.cookie("viewId") != articleId || $.cookie("viewId") == null) {
+    if ($.cookie("viewId") != articleId) {
         $.ajax({
             async: false,
             type: "POST",
@@ -226,7 +226,7 @@ function increaseViewCount(articleId) {
             contentType: 'application/json',
             success: function (data) {
                 console.log(data);
-                $(".articleViewCount").html(data);
+                $(".views").html(data);
                 $.cookie(
                     "viewId",
                     articleId,//需要cookie写入的业务

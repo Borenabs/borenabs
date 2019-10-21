@@ -30,4 +30,8 @@ public interface CommentService {
      * @return List<Comment>
      * */
     List<Comment> listCommentByArticleId(Integer articleId);
+    /**
+     * 查询子评论
+     * */
+    List<Comment> childCommentList(Integer commentPid);
 }

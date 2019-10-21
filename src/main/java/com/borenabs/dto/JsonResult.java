@@ -43,7 +43,6 @@ public class JsonResult<T> {
         return new JsonResult(0, "操作成功", null);
     }
 
-
     public JsonResult ok(T data) {
         return new JsonResult(0, "操作成功", data);
     }
