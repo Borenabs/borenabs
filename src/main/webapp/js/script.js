@@ -235,9 +235,9 @@ function increaseViewCount(articleId) {
                     }
                 );
             },
-            error: function () {
+            /*error: function () {
                 alert("获取数据出错!");
-            },
+            },*/
         });
     }
 }
